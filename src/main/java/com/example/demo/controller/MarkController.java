@@ -16,7 +16,7 @@ public class MarkController
     @GetMapping("/mark/{id}")
     public Mark getmark (@PathVariable int id)
     {
-        Mark mark = markjdbc.get(id);
+        Mark mark = markjdbc.get_mark(id);
         return mark;
     }
 }

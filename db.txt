@@ -1,3 +1,29 @@
+{
+    "id": 1,
+    "surname": "Борисов",
+    "name": "Васген",
+    "second_name": "Борисович",
+    "study_group_id": 1
+}
+
+{
+    "id": 1,
+    "student_id": 1,
+    "study_plan_id": 1,
+    "in_time": true,
+    "count": 1,
+    "mark_id": 1
+}
+
+
+{
+    "id": 1,
+    "name": "ИВ1"
+}
+
+
+
+
 CREATE TABLE if not exists mark
 (
     id integer primary key not null,

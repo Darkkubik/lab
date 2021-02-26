@@ -14,7 +14,7 @@ public class MarkJdbc
 
     public MarkJdbc(JdbcTemplate jdbcTemplate) {this.jdbcTemplate = jdbcTemplate;}
 
-    public Mark get(int id)
+    public Mark get_mark(int id)
     {
         return jdbcTemplate.queryForObject("SELECT * FROM MARK WHERE id = ?", this::mapMark, id);
     }

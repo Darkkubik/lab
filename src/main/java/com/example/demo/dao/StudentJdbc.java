@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 @Repository
 
@@ -33,17 +34,34 @@ public class StudentJdbc
     }
 
     // СОЗДАНИЕ И ОБНОВЛЕНИЕ СТУДЕНТА
-    public Student set(int id, String surname, String name, String second_name, int study_group_id)
+    public int set(int id, String surname, String name, String second_name, int study_group_id)
     {
-        return jdbcTemplate.queryForObject("MERGE INTO STUDENT (ID, SURNAME, NAME, SECOND_NAME, STUDY_GROUP_ID)" +
-                        "VALUES (?, ?, ?, ?, ?)",
-                this::mapStudent, id, surname, name, second_name, study_group_id);
+        return jdbcTemplate.update("MERGE INTO STUDENT (ID, SURNAME, NAME, SECOND_NAME, STUDY_GROUP_ID)" +
+                        "VALUES (?, ?, ?, ?, ?)", id, surname, name, second_name, study_group_id);
     }
 
     // ПРОСМОТР СТУДЕНТА
-    public Student get(int id)
+    public Student get_student(int id)
     {
         return jdbcTemplate.queryForObject("SELECT * FROM STUDENT WHERE id = ?", this::mapStudent, id);
+    }
+
+    // ПРОСМОТР СТУДЕНТОВ
+    public List<Student> get_all()
+    {
+        return jdbcTemplate.query("SELECT * FROM STUDENT", this::mapStudent);
+    }
+
+    // ПРОСМОТР СТУДЕНТОВ ПО ГРУППЕ
+    public List<Student> get_all_group(int id)
+    {
+        return jdbcTemplate.query("SELECT * FROM STUDENT WHERE study_group_id = ?", this::mapStudent, id);
+    }
+
+    // УДАЛЕНИЕ
+    public int delete(int id)
+    {
+        return jdbcTemplate.update("DELETE FROM STUDENT WHERE id = ?",  id);
     }
 
 }
