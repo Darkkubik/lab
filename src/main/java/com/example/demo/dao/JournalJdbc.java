@@ -51,6 +51,6 @@ public class JournalJdbc
     // ПРОСМОТР ЖУРНАЛА ПО ГРУППЕ
     public List<Journal> get_all_group(int id)
     {
-        return jdbcTemplate.query("SELECT * FROM JOURNAL JOIN STUDENT st ON st.study_group_id = ?", this::mapJournal, id);
+        return jdbcTemplate.query("SELECT * FROM JOURNAL INNER JOIN STUDENT st ON st.id = JOURNAL.student_id where study_group_id = ?", this::mapJournal, id);
     }
 }
